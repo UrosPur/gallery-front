@@ -7,6 +7,7 @@
         <div class="collapse collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                   <router-link class="nav-item nav-link" :to="{ name: 'login'}">Login</router-link>
+                  <router-link class="nav-item nav-link" :to="{ name: 'register'}">Register</router-link>
             </div>
         </div>
     </nav>
