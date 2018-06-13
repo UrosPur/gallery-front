@@ -1,8 +1,13 @@
 <template>
+
     <div class="col-6 form-login">
 
-        <h2>Register</h2>
-        <p class="welcome ">If you already have an account please <router-link class="nav-item nav-link " :to="{ name: 'login'}">Login</router-link>  </p>
+        <div class="text-center mb-5">
+            <h2>Register</h2>
+            <p class="welcome">If you already have an account please
+                <router-link :to="{ name: 'login'}">Login</router-link>
+            </p>
+        </div>
 
 
         <form @submit.prevent="login()">
@@ -44,11 +49,9 @@
             </div>
 
             <div class="form-group">
-                <label for="checkbox" class="col-4 col-form-label">Accepted terms and conditions</label>
-                <div class="col-8">
-                    <label class="checkbox-inline">
-                        <input id="checkbox" type="checkbox" name="checkbox" value="1">
-                    </label>
+                <div class="offset-4 col-8">
+                <label for="checkbox" class="ol-form-label">Accepted terms and conditions</label>
+                        <input class="checkbox" id="checkbox" type="checkbox" name="checkbox" value="1">
                 </div>
             </div>
 
@@ -65,11 +68,14 @@
     export default {
         name: "Register",
 
-        data(){
+        data() {
 
             return {
+                first_name: '',
+                last_name: '',
                 email: '',
-                password: ''
+                password: '',
+                passwordConfirmation: ''
             }
         }
     }
@@ -81,11 +87,15 @@
         margin-top: 30px;
     }
 
-
-
     .welcome {
         text-align: right;
         display: inline;
+    }
+    .checkbox{
+        float: left;
+        position: relative;
+        top: 5px;
+        margin-right: 5px;
     }
 
 </style>
