@@ -1,8 +1,15 @@
 import axios from 'axios'
 
 export default class Auth {
+
+    // kurs
+    // constructor() {
+    //     axios.defaults.baseURL = 'http://localhost:8000/api/'
+    // }
+
+    // kuci
     constructor() {
-        axios.defaults.baseURL = 'http://localhost:8000/api/'
+        axios.defaults.baseURL = "http://gallery-back.kev/api/";
     }
 
     login (email,password) {
