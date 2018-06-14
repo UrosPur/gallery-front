@@ -7,7 +7,6 @@ export default class Auth {
 
     }
 
-
     login(email, password) {
         return axios.post('login', {
             email, password
@@ -16,16 +15,50 @@ export default class Auth {
 
                 window.localStorage.setItem('loginToken', response.data.token);
                 this.setAxiosDefaultAuthorizationHeader();
+                return response;
+            })
+
+    }
+
+    setAxiosDefaultAuthorizationHeader() {
+        const TOKEN = `Bearer ${window.localStorage.getItem('loginToken')}`
+        axios.defaults.headers.common['authorization'] = TOKEN
+    }
+
+    isAuthenticated() {
+        return !!window.localStorage.getItem("loginToken");
+    }
+
+    logout() {
+        console.log(2000000)
+        window.localStorage.removeItem('loginToken')
+        delete axios.defaults.headers.common['Authorization']
+        window.location.reload(true)
+    }
+
+
+
+    register(first_name,last_name,email,password,password_confirmation,terms){
+
+        return axios.post('register',{
+            first_name,
+            last_name,
+            email,
+            password,
+            password_confirmation,
+            terms
+
+        })
+            .then(response => {
+
+                window.localStorage.setItem('loginToken', response.data.token);
+                this.setAxiosDefaultAuthorizationHeader();
+                return response;
             })
 
     }
 
 
-    setAxiosDefaultAuthorizationHeader() {
-        const TOKEN = `Bearer ${window.localStorage.getItem('loginToken')}`
-        axios.defaults.headers.common['authorization'] = TOKEN
-
-    }
 }
 
 

@@ -3,6 +3,8 @@
 
         <h2 class="welcome">Welcome to login page</h2>
 
+        <div v-if="errors">{{ errors }}</div>
+
         <form @submit.prevent="login()">
             <div class="form-group row">
                 <label for="email" class="col-4 col-form-label">Email</label>
@@ -44,23 +46,25 @@
                 }
         },
         methods: {
-            ...mapMutations(['setIsAuthenticated']),
+            ...mapMutations([
+                'setIsAuthenticated',
+                'setAuthUserId'
+            ]),
 
             login(){
                 auth.login(this.email,this.password)
-                    .then(()=>{
-
-                        console.log(3568)
+                    .then((response )=>{
 
                         this.$router.push({ name:'galleries' })
+                        this.setIsAuthenticated(true);
+                        this.setAuthUserId(response.data.user.id)
 
 
                     })
                     .catch( error => {
 
-                        console.log(200)
 
-                        // this.errors = error.response.data.error;
+                        this.errors = error.response.data.error;
                     })
 
             }

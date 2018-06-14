@@ -4,13 +4,15 @@
 
         <div class="text-center mb-5">
             <h2>Register</h2>
-            <p class="welcome">If you already have an account please
-                <router-link :to="{ name: 'login'}">Login</router-link>
-            </p>
+            <!--<p class="welcome">If you already have an account please-->
+            <!--<router-link :to="{ name: 'login'}">Login</router-link>-->
+            <!--</p>-->
         </div>
 
+        <div v-if="errors">{{ errors }}</div>
 
-        <form @submit.prevent="login()">
+
+        <form @submit.prevent="register()">
             <div class="form-group row">
                 <label for="first_name" class="col-4 col-form-label">First Name</label>
                 <div class="col-8">
@@ -43,15 +45,16 @@
             <div class="form-group row">
                 <label for="password_confirmation" class="col-4 col-form-label">Confirm password</label>
                 <div class="col-8">
-                    <input v-model="passwordConfirmation" id="password_confirmation" name="password_confirmation" placeholder="confirm password" type="password"
+                    <input v-model="password_confirmation" id="password_confirmation" name="password_confirmation"
+                           placeholder="confirm password" type="password"
                            class="form-control here">
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="offset-4 col-8">
-                <label for="checkbox" class="ol-form-label">Accepted terms and conditions</label>
-                        <input class="checkbox" id="checkbox" type="checkbox" name="checkbox" value="1">
+                    <label for="checkbox" class="ol-form-label">Accepted terms and conditions</label>
+                    <input v-model="terms" class="checkbox" id="checkbox" type="checkbox" name="checkbox" value="1">
                 </div>
             </div>
 
@@ -65,6 +68,9 @@
 </template>
 
 <script>
+
+    import {auth} from "../services/Auth";
+
     export default {
         name: "Register",
 
@@ -75,8 +81,34 @@
                 last_name: '',
                 email: '',
                 password: '',
-                passwordConfirmation: ''
+                password_confirmation: '',
+                terms:'',
+                errors: ''
             }
+        },
+        methods: {
+
+            register() {
+
+                auth.register(
+                    this.first_name,
+                    this.last_name,
+                    this.email,
+                    this.password,
+                    this.password_confirmation,
+                    this.terms
+                )
+                    .then(() => {
+                        // console.log(200)
+                        this.$router.push({name: 'galleries'})
+                    })
+                    .catch(error => {
+                        // console.log(250)
+                        this.errors = error.response.data;
+                    });
+
+            }
+
         }
     }
 </script>
@@ -91,7 +123,8 @@
         text-align: right;
         display: inline;
     }
-    .checkbox{
+
+    .checkbox {
         float: left;
         position: relative;
         top: 5px;
