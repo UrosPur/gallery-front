@@ -28,6 +28,10 @@
 </template>
 
 <script>
+
+    import {auth} from "../services/Auth";
+    import {mapMutations} from 'vuex'
+
     export default {
         name: "Login",
 
@@ -35,9 +39,34 @@
 
                 return {
                     email: '',
-                    password: ''
+                    password: '',
+                    errors:''
                 }
         },
+        methods: {
+            ...mapMutations(['setIsAuthenticated']),
+
+            login(){
+                auth.login(this.email,this.password)
+                    .then(()=>{
+                        console.log(253 )
+                        this.$router.push({ name:'galleries' })
+                        // this.setIsAuthenticated(true)
+
+                    })
+                    .catch( error => {
+
+                        console.log(error.response.data.error)
+
+                        this.errors = error.response.data.error;
+                    })
+
+            }
+
+
+
+
+        }
     }
 </script>
 

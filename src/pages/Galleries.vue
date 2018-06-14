@@ -6,7 +6,7 @@
 
 <script>
 
-    import { galleryService} from "../services/GalleryService";
+    // import { galleryService} from "../services/GalleryService";
 
     export default {
         name: "Galleries"
