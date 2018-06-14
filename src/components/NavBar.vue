@@ -9,7 +9,6 @@
                   <router-link class="nav-item nav-link" :to="{ name: 'login'}">Login</router-link>
                   <router-link class="nav-item nav-link" :to="{ name: 'register'}">Register</router-link>
                   <router-link class="nav-item nav-link" :to="{ name: 'galleries'}">Galleries</router-link>
-                  <router-link class="nav-item nav-link" :to="{ name: 'single-gallery'}">Single Gallery</router-link>
             </div>
         </div>
     </nav>

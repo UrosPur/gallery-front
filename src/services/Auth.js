@@ -2,32 +2,30 @@ import axios from 'axios'
 
 export default class Auth {
 
-    // kurs
-    // constructor() {
-    //     // axios.defaults.baseURL = 'http://localhost:8000/api/'
-    //     axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'
-    // }
-
-
-    // kuci
     constructor() {
-        axios.defaults.baseURL = 'http://gallery-back.kev/api/'
+        axios.defaults.baseURL = 'http://localhost:8000/api/'
+
     }
 
 
-    login(email,password){
+    login(email, password) {
         return axios.post('login', {
-            email,password
+            email, password
         })
             .then(response => {
+
                 window.localStorage.setItem('loginToken', response.data.token);
                 this.setAxiosDefaultAuthorizationHeader();
             })
 
-
     }
 
 
+    setAxiosDefaultAuthorizationHeader() {
+        const TOKEN = `Bearer ${window.localStorage.getItem('loginToken')}`
+        axios.defaults.headers.common['authorization'] = TOKEN
+
+    }
 }
 
 
