@@ -14,9 +14,9 @@
                 <router-link class="nav-item nav-link"  :to="{ name: 'galleries'}">Galleries</router-link>
                 <router-link class="nav-item nav-link"  :to="{ name: 'create-gallery'}">Add new gallery</router-link>
             </div>
-            <!--<form class="form-inline my-2 my-lg-0">-->
-                <!--<b-input class="form-control mr-sm-2" placeholder="Search galleries" aria-label="Search" @input="setSearchTermChange" />-->
-            <!--</form>-->
+            <form class="form-inline my-2 my-lg-0">
+                <b-input class="form-control mr-sm-2" placeholder="Search galleries" aria-label="Search" @input="setSearchTermChange" />
+            </form>
         </div>
     </nav>
 </template>
@@ -33,10 +33,10 @@
                 'setSearchTerm',
                 'setIsAuthenticated'
             ]),
-            // setSearchTermChange(term){
-            //
-            //     this.setSearchTermChange(term)
-            // },
+            setSearchTermChange(term){
+
+                this.setSearchTermChange(term)
+            },
 
             logout(){
                 auth.logout();
