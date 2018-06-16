@@ -13,7 +13,6 @@ const routes = [
     { path: '/register', component:Register, name:'register' },
     { path: '/galleries', component:Galleries, name:'galleries' },
     { path: '/gallery/:id', component:SingleGallery, name:'single-gallery' },
-    { path: '/gallery/create', component:SingleGallery, name:'create-gallery' },
 ]
 
 

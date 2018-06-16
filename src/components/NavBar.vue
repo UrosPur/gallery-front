@@ -12,7 +12,7 @@
                 <a class="nav-item nav-link" v-if="isLoged" href="" @click="logout">logout</a>
                 <router-link class="nav-item nav-link" v-if="!isLoged"  :to="{ name: 'register'}">Register</router-link>
                 <router-link class="nav-item nav-link"  :to="{ name: 'galleries'}">Galleries</router-link>
-                <router-link class="nav-item nav-link"  :to="{ name: 'create-gallery'}">Add new gallery</router-link>
+                <!--<router-link class="nav-item nav-link"  :to="{ name: 'create-gallery'}">Add new gallery</router-link>-->
             </div>
             <!--<form class="form-inline my-2 my-lg-0">-->
                 <!--<b-input class="form-control mr-sm-2" placeholder="Search galleries" aria-label="Search" @input="setSearchTermChange" />-->

@@ -11,7 +11,7 @@ export default class GalleryService{
         return axios.get('galleries');
     }
 
-    getOne(id){
+    getSingleGallery(id){
 
         return axios.get(`galleries/${id}`);
 
