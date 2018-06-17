@@ -20,42 +20,30 @@
 </template>
 
 <script>
+
     import {galleryService} from "../services/GalleryService";
 
     export default {
-        name: "MyGallery",
-
+        name: "Author",
         data() {
             return {
-                galleries: []
+                galleries: [],
             }
         },
 
-
-        beforeRouteEnter(to, from, next) {
+        beforeRouteEnter (to, from, next) {
             next((vm) => {
-                galleryService.getSingleUserGalleries()
+                galleryService.getSingleAuthorGalleries(vm.$route.params.id)
                     .then((response) => {
-
-
                         vm.galleries = response.data
-                    })
-                    .catch(error => {
-
-                        console.log(error)
                     })
             })
         },
 
 
     }
-
-
 </script>
 
 <style scoped>
-    .slider-item {
-        height: 500px;
-    }
 
 </style>

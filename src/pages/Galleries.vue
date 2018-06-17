@@ -8,7 +8,9 @@
                     <router-link :to="{ name: 'single-gallery', params:{id: gallery.id}}">
                         <h5 class="card-title">{{gallery.name}}</h5>
                     </router-link>
-                    <p class="card-text"><i>created by:</i> {{gallery.user.firstName}} {{gallery.user.lastName}}</p>
+                    <router-link :to="{ name: 'author', params:{id: gallery.id}}">
+                    <p class="card-text"><i>created by:</i> {{gallery.user.first_name}} {{gallery.user.last_name}}</p>
+                    </router-link>
                     <p class="card-text"><i>created at:</i> {{gallery.created_at}}</p>
                 </div>
             </div>

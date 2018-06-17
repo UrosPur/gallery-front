@@ -123,7 +123,7 @@
 
 
     export default {
-        name: "Register",
+        name: "CreateGallery",
 
 
         data() {

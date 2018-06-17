@@ -25,6 +25,13 @@ export default class GalleryService{
 
     }
 
+    getSingleAuthorGalleries(id){
+
+
+        return axios.get(`author-galleries/${id}`)
+
+    }
+
     addGallery(name,inputs,description){
 
         const USERID = `${window.localStorage.getItem('user')}`
