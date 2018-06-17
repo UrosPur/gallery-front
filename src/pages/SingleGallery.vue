@@ -2,7 +2,7 @@
     <div class="container">
         <div class="card text-center w-100">
             <div class="card-header">
-                <i>created by:</i> {{gallery.user.first_name}} {{gallery.user.first_name}}
+                <i>created by:</i> {{gallery.user.first_name}} {{gallery.user.last_name}}
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{gallery.name}}</h5>
@@ -13,7 +13,7 @@
                             indicators
                             :interval="4000"
                 >
-                    <b-carousel-slide v-for="(image, key) in gallery.images" :key="key" :img-src="image.url" style="width:100%; max-height:480px"/>
+                    <b-carousel-slide class="slider-item" v-for="(image, key) in gallery.images" :key="key" :img-src="image.url" />
                 </b-carousel>
                 <!-- carousel end -->
             </div>
@@ -41,7 +41,7 @@
                     next((vm) => {
             galleryService.getSingleGallery(vm.$route.params.id)
                 .then((response) => {
-                        console.log(response.data.images[0])
+                        // console.log(response.data.user.first_name)
                         vm.gallery = response.data
                     })
                 })
@@ -53,5 +53,8 @@
 </script>
 
 <style scoped>
+    .slider-item{
+        height: 500px;
+    }
 
 </style>

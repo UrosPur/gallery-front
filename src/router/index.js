@@ -9,10 +9,11 @@ import SingleGallery from '../pages/SingleGallery'
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/login', component:Login, name:'login' },
-    { path: '/register', component:Register, name:'register' },
-    { path: '/galleries', component:Galleries, name:'galleries' },
-    { path: '/gallery/:id', component:SingleGallery, name:'single-gallery' },
+    {path: '/', redirect: '/galleries'},
+    {path: '/login', component: Login, name: 'login'},
+    {path: '/register', component: Register, name: 'register'},
+    {path: '/galleries', component: Galleries, name: 'galleries'},
+    {path: '/gallery/:id', component: SingleGallery, name: 'single-gallery'},
 ]
 
 

@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-dark bg-primary  navbar-expand-lg">
-        <a class="navbar-brand" href="/">Home</a>
+                <router-link class="navbar-brand"  :to="{ name: 'galleries'}">Home</router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -12,6 +12,7 @@
                 <a class="nav-item nav-link" v-if="isLoged" href="" @click="logout">logout</a>
                 <router-link class="nav-item nav-link" v-if="!isLoged"  :to="{ name: 'register'}">Register</router-link>
                 <router-link class="nav-item nav-link"  :to="{ name: 'galleries'}">Galleries</router-link>
+                <router-link class="nav-item nav-link"  >My galleries</router-link>
                 <!--<router-link class="nav-item nav-link"  :to="{ name: 'create-gallery'}">Add new gallery</router-link>-->
             </div>
             <!--<form class="form-inline my-2 my-lg-0">-->

@@ -4,12 +4,12 @@
 
         <div class="text-center mb-5">
             <h2>Register</h2>
-            <!--<p class="welcome">If you already have an account please-->
-            <!--<router-link :to="{ name: 'login'}">Login</router-link>-->
-            <!--</p>-->
+            <p class="welcome">If you already have an account please
+            <router-link :to="{ name: 'login'}">Login</router-link>
+            </p>
         </div>
 
-        <div v-if="errors">{{ errors }}</div>
+        <div v-if="message">{{ message }}</div>
 
 
         <form @submit.prevent="register()">
@@ -20,6 +20,7 @@
                            class="form-control here">
                 </div>
             </div>
+        <div class="alert-danger" v-if="firstNameMessage">{{ firstNameMessage[0] }}</div>
             <div class="form-group row">
                 <label for="last_name" class="col-4 col-form-label">First Name</label>
                 <div class="col-8">
@@ -27,6 +28,7 @@
                            class="form-control here">
                 </div>
             </div>
+        <div class="alert-danger" v-if="lastNameMessage">{{ lastNameMessage[0] }}</div>
             <div class="form-group row">
                 <label for="email" class="col-4 col-form-label">Email</label>
                 <div class="col-8">
@@ -34,6 +36,7 @@
                            class="form-control here">
                 </div>
             </div>
+        <div class="alert-danger" v-if="emailMessage">{{ emailMessage[0] }}</div>
             <div class="form-group row">
                 <label for="password" class="col-4 col-form-label">Password</label>
                 <div class="col-8">
@@ -50,6 +53,7 @@
                            class="form-control here">
                 </div>
             </div>
+    <div class="alert-danger" v-if="passwordMessage">{{ passwordMessage[0] }}</div>
 
             <div class="form-group">
                 <div class="offset-4 col-8">
@@ -57,6 +61,7 @@
                     <input v-model="terms" class="checkbox" id="checkbox" type="checkbox" name="checkbox" value="1">
                 </div>
             </div>
+    <div class="alert-danger" v-if="termMessage"> Terms must me accepted    </div>
 
             <div class="form-group row">
                 <div class="offset-4 col-8">
@@ -83,7 +88,13 @@
                 password: '',
                 password_confirmation: '',
                 terms:'',
-                errors: ''
+                errors: '',
+                message: '',
+                firstNameMessage:'',
+                lastNameMessage:'',
+                emailMessage:'',
+                passwordMessage:'',
+                termMessage:''
             }
         },
         methods: {
@@ -98,13 +109,19 @@
                     this.password_confirmation,
                     this.terms
                 )
-                    .then(() => {
-                        // console.log(200)
+                    .then((response) => {
+                        console.log(response)
                         this.$router.push({name: 'galleries'})
                     })
-                    .catch(error => {
-                        // console.log(250)
-                        this.errors = error.response.data;
+                    .catch(errors => {
+                        console.log(errors.response.data)
+                        this.errors = errors.response.data.errors;
+                        this.firstNameMessage = errors.response.data.errors.first_name;
+                        this.lastNameMessage = errors.response.data.errors.last_name;
+                        this.emailMessage = errors.response.data.errors.email;
+                        this.passwordMessage = errors.response.data.errors.password;
+                        this.termMessage = errors.response.data.errors.terms;
+                        this.message = errors.response.data.message;
                     });
 
             }

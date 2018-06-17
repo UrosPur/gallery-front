@@ -14,6 +14,7 @@ export default class Auth {
             .then(response => {
 
                 window.localStorage.setItem('loginToken', response.data.token);
+                // window.localStorage.setItem('user', response.data.user.id);
                 this.setAxiosDefaultAuthorizationHeader();
                 return response;
             })
@@ -22,17 +23,21 @@ export default class Auth {
 
     setAxiosDefaultAuthorizationHeader() {
         const TOKEN = `Bearer ${window.localStorage.getItem('loginToken')}`
+        // const TOKENUSER = `Bearer ${window.localStorage.getItem('user')}`
         axios.defaults.headers.common['authorization'] = TOKEN
+        // axios.defaults.headers.common['user'] = TOKENUSER
     }
 
     isAuthenticated() {
         return !!window.localStorage.getItem("loginToken");
     }
 
+
     logout() {
-        console.log(2000000)
         window.localStorage.removeItem('loginToken')
+        // window.localStorage.removeItem('user')
         delete axios.defaults.headers.common['Authorization']
+        // delete axios.defaults.headers.common['user']
         window.location.reload(true)
     }
 
@@ -49,12 +54,7 @@ export default class Auth {
             terms
 
         })
-            .then(response => {
 
-                window.localStorage.setItem('loginToken', response.data.token);
-                this.setAxiosDefaultAuthorizationHeader();
-                return response;
-            })
 
     }
 
