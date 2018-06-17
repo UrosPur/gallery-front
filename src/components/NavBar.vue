@@ -42,6 +42,8 @@
             logout(){
                 auth.logout();
                 this.setIsAuthenticated(false);
+                this.$router.push({name: 'home'})
+
             }
         },
         computed: {

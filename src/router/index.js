@@ -10,7 +10,7 @@ import MyGallery from '../pages/MyGallery'
 Vue.use(VueRouter)
 
 const routes = [
-    {path: '/', redirect: '/galleries'},
+    {path: '/', redirect: '/galleries', name:'home'},
     {path: '/login', component: Login, name: 'login'},
     {path: '/register', component: Register, name: 'register'},
     {path: '/galleries', component: Galleries, name: 'galleries'},
