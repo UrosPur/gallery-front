@@ -12,7 +12,7 @@
                 <a class="nav-item nav-link" v-if="isLoged" href="" @click="logout">logout</a>
                 <router-link class="nav-item nav-link" v-if="!isLoged"  :to="{ name: 'register'}">Register</router-link>
                 <router-link class="nav-item nav-link"  :to="{ name: 'galleries'}">Galleries</router-link>
-                <router-link class="nav-item nav-link"  >My galleries</router-link>
+                <router-link class="nav-item nav-link"  v-if="isLoged" :to="{ name: 'my-gallery'}"  >My galleries</router-link>
                 <!--<router-link class="nav-item nav-link"  :to="{ name: 'create-gallery'}">Add new gallery</router-link>-->
             </div>
             <!--<form class="form-inline my-2 my-lg-0">-->
@@ -34,10 +34,10 @@
                 'setSearchTerm',
                 'setIsAuthenticated'
             ]),
-            setSearchTermChange(term){
-
-                this.setSearchTermChange(term)
-            },
+            // setSearchTermChange(term){
+            //
+            //     this.setSearchTermChange(term)
+            // },
 
             logout(){
                 auth.logout();

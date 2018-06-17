@@ -17,9 +17,13 @@ export default class GalleryService{
 
     }
 
+    getSingleUserGalleries(){
 
+        const TOKENUSER = `${window.localStorage.getItem('user')}`
 
+        return axios.get(`my-galleries/${TOKENUSER}`)
 
+    }
 
 
 }
