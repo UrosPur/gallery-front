@@ -38,7 +38,6 @@
         computed: {
             ...mapGetters({
                 galleries: 'getGalleries',
-                // currentTerm: "getSearchTerms",
                 // currentUser: "getAuthUserId"
             }),
             allGalleries() {

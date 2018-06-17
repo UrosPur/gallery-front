@@ -3,7 +3,7 @@
 
         <h2 class="welcome">Welcome to login page</h2>
 
-        <div v-if="errors">{{ errors }}</div>
+        <div class="alert-danger alert-message" v-if="errors">{{ errors.replace('_', ' ') }}. Please check and try again</div>
 
         <form @submit.prevent="login()">
             <div class="form-group row">
@@ -22,7 +22,7 @@
             </div>
             <div class="form-group row">
                 <div class="offset-4 col-8">
-                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <button name="submit" type="submit" class="btn btn-primary">Login</button>
                 </div>
             </div>
         </form>
@@ -85,6 +85,10 @@
 
     .welcome {
         text-align: right;
+    }
+
+    .alert-message{
+        margin: 15px;
     }
 
 </style>

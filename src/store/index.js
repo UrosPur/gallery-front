@@ -8,16 +8,12 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        searchTerm: "",
         galleries: [],
         isAuthenticated: auth.isAuthenticated(),
         authUserId: ""
 
     },
     getters: {
-        getSearchTerms(state) {
-            return state.searchTerm;
-        },
         getGalleries(state) {
 
             return state.galleries;
@@ -33,9 +29,6 @@ export const store = new Vuex.Store({
 
     },
     mutations: {
-        setSearchTerm(state, searchTerm) {
-            state.searchTerm = searchTerm;
-        },
         setGalleries(state, galleries) {
             state.galleries = galleries;
         },
