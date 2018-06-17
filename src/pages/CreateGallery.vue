@@ -98,7 +98,7 @@
             <ul>
                 <li v-for="(input, index) in inputs">
                     <input type="text" v-model="input.one">
-                    <button @click="deleteRow(index)">Delete</button>
+                    <button v-if="inputs.length != 1" @click="deleteRow(index)">Delete</button>
                 </li>
             </ul>
 
@@ -118,6 +118,7 @@
 </template>
 
 <script>
+
 
     import {galleryService} from "../services/GalleryService";
 
