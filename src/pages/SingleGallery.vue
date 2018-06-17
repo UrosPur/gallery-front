@@ -23,8 +23,15 @@
                 delete
             </a>
 
+
             <!--<button v-if="$route.params.id = gallery.user.id">edit</button>-->
         </div>
+
+                <b-list-group v-for="(comment, key) in comments" :key="key" >
+                    <b-list-group-item>Comment Text: {{ comment.text }}
+                    Created at: {{ comment.created_at }}</b-list-group-item>
+                </b-list-group>
+
     </div>
 </template>
 
@@ -36,7 +43,8 @@
 
         data() {
             return {
-                gallery: []
+                gallery: [],
+                comments:[]
             }
         },
 
@@ -44,7 +52,9 @@
             next((vm) => {
                 galleryService.getSingleGallery(vm.$route.params.id)
                     .then((response) => {
+                        console.log(response.data.comments)
                         vm.gallery = response.data
+                        vm.comments = response.data.comments
                     })
             })
         },
