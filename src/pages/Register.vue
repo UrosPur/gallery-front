@@ -118,7 +118,6 @@
                         console.log(response)
                         auth.login(this.email, this.password)
                             .then((resposne) => {
-                                console.log(response)
 
                                 this.$router.push({name: 'galleries'})
                                 this.setIsAuthenticated(true);
@@ -127,7 +126,6 @@
 
                     })
                     .catch(errors => {
-                        console.log(errors.response.data)
                         this.errors = errors.response.data.errors;
                         this.firstNameMessage = errors.response.data.errors.first_name;
                         this.lastNameMessage = errors.response.data.errors.last_name;

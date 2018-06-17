@@ -13,14 +13,17 @@
                             indicators
                             :interval="4000"
                 >
-                    <b-carousel-slide class="slider-item" v-for="(image, key) in gallery.images" :key="key" :img-src="image.url" />
+                    <b-carousel-slide class="slider-item" v-for="(image, key) in gallery.images" :key="key"
+                                      :img-src="image.url"/>
                 </b-carousel>
                 <!-- carousel end -->
             </div>
-                <!--<div class="card-footer text-muted">-->
-                    <!--<i>created at: </i>{{gallery.created_at | formatDate}}-->
-                    <!--<button v-if="isOwner()" class="btn btn-sm btn-outline-dark float-right">Delete this gallery</button>-->
-                <!--</div>-->
+
+            <a class="btn-danger" v-confirm="{ok: deleteGallery, cancel: doNothing, message: 'You will delete this gallery. Are you sure?'}">
+                delete
+            </a>
+
+            <!--<button v-if="$route.params.id = gallery.user.id">edit</button>-->
         </div>
     </div>
 </template>
@@ -37,23 +40,42 @@
             }
         },
 
-        beforeRouteEnter (to, from, next) {
-                    next((vm) => {
-            galleryService.getSingleGallery(vm.$route.params.id)
-                .then((response) => {
-                        // console.log(response.data.user.first_name)
+        beforeRouteEnter(to, from, next) {
+            next((vm) => {
+                galleryService.getSingleGallery(vm.$route.params.id)
+                    .then((response) => {
                         vm.gallery = response.data
                     })
-                })
+            })
         },
+        methods: {
+
+
+            deleteGallery() {
+                galleryService.deleteGallery(this.gallery.id)
+                    .then((response) => {
+
+                            console.log(response)
+                        this.$router.push({ name:'my-gallery' })
+                })
+
+
+            },
+
+            doNothing() {
+
+            },
 
 
         }
 
+
+    }
+
 </script>
 
 <style scoped>
-    .slider-item{
+    .slider-item {
         height: 500px;
     }
 

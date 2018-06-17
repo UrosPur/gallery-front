@@ -8,7 +8,7 @@
                     <router-link :to="{ name: 'single-gallery', params:{id: gallery.id}}">
                         <h5 class="card-title">{{gallery.name}}</h5>
                     </router-link>
-                    <router-link :to="{ name: 'author', params:{id: gallery.id}}">
+                    <router-link :to="{ name: 'author', params:{id: gallery.user.id}}">
                         <p class="card-text"><i>created by:</i> {{gallery.user.first_name}} {{gallery.user.last_name}}
                         </p>
                     </router-link>
@@ -36,7 +36,6 @@
             next((vm) => {
                 galleryService.getSingleUserGalleries()
                     .then((response) => {
-
 
                         vm.galleries = response.data
                     })

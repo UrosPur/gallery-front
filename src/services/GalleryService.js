@@ -47,6 +47,11 @@ export default class GalleryService{
 
     }
 
+    deleteGallery(id){
+
+            return axios.delete(`delete-gallery/${id}`)
+    }
+
 
 }
 
