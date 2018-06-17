@@ -59,16 +59,13 @@
                         this.$router.push({ name:'my-gallery' })
                 })
 
-
             },
 
             doNothing() {
 
             },
 
-
         }
-
 
     }
 
