@@ -2,6 +2,7 @@
     <div class="container">
         <div class="card text-center w-100">
             <div class="card-header">
+                <div class="alert-danger" v-if="error">You can not delete this gallery</div>
                 <i>created by:</i> {{gallery.user.first_name}} {{gallery.user.last_name}}
             </div>
             <div class="card-body">
@@ -19,7 +20,8 @@
                 <!-- carousel end -->
             </div>
 
-            <a class="btn-danger" v-confirm="{ok: deleteGallery, cancel: doNothing, message: 'You will delete this gallery. Are you sure?'}">
+            <a class="btn-danger"
+               v-confirm="{ok: deleteGallery, cancel: doNothing, message: 'You will delete this gallery. Are you sure?'}">
                 delete
             </a>
 
@@ -27,10 +29,11 @@
             <!--<button v-if="$route.params.id = gallery.user.id">edit</button>-->
         </div>
 
-                <b-list-group v-for="(comment, key) in comments" :key="key" >
-                    <b-list-group-item>Comment Text: {{ comment.text }}
-                    Created at: {{ comment.created_at }}</b-list-group-item>
-                </b-list-group>
+        <b-list-group v-for="(comment, key) in comments" :key="key">
+            <b-list-group-item>Comment Text: {{ comment.text }}
+                Created at: {{ comment.created_at }}
+            </b-list-group-item>
+        </b-list-group>
 
     </div>
 </template>
@@ -44,7 +47,8 @@
         data() {
             return {
                 gallery: [],
-                comments:[]
+                comments: [],
+                error: ""
             }
         },
 
@@ -52,7 +56,6 @@
             next((vm) => {
                 galleryService.getSingleGallery(vm.$route.params.id)
                     .then((response) => {
-                        console.log(response.data.comments)
                         vm.gallery = response.data
                         vm.comments = response.data.comments
                     })
@@ -65,8 +68,11 @@
                 galleryService.deleteGallery(this.gallery.id)
                     .then((response) => {
 
-                            console.log(response)
-                        this.$router.push({ name:'my-gallery' })
+                        this.$router.push({name: 'my-gallery'})
+                    }).catch((error) => {
+
+                    this.error = error.response.data.message
+
                 })
 
             },
